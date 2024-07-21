@@ -1,5 +1,5 @@
 Timing Analyzer report for imu_data_acquisition
-Sun Jul 21 20:11:23 2024
+Sun Jul 21 20:53:59 2024
 Quartus Prime Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
 
 
@@ -17,31 +17,43 @@ Quartus Prime Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
   9. Slow 1200mV 85C Model Recovery Summary
  10. Slow 1200mV 85C Model Removal Summary
  11. Slow 1200mV 85C Model Minimum Pulse Width Summary
- 12. Slow 1200mV 85C Model Metastability Summary
- 13. Slow 1200mV 0C Model Fmax Summary
- 14. Slow 1200mV 0C Model Setup Summary
- 15. Slow 1200mV 0C Model Hold Summary
- 16. Slow 1200mV 0C Model Recovery Summary
- 17. Slow 1200mV 0C Model Removal Summary
- 18. Slow 1200mV 0C Model Minimum Pulse Width Summary
- 19. Slow 1200mV 0C Model Metastability Summary
- 20. Fast 1200mV 0C Model Setup Summary
- 21. Fast 1200mV 0C Model Hold Summary
- 22. Fast 1200mV 0C Model Recovery Summary
- 23. Fast 1200mV 0C Model Removal Summary
- 24. Fast 1200mV 0C Model Minimum Pulse Width Summary
- 25. Fast 1200mV 0C Model Metastability Summary
- 26. Multicorner Timing Analysis Summary
- 27. Board Trace Model Assignments
- 28. Input Transition Times
- 29. Signal Integrity Metrics (Slow 1200mv 0c Model)
- 30. Signal Integrity Metrics (Slow 1200mv 85c Model)
- 31. Signal Integrity Metrics (Fast 1200mv 0c Model)
- 32. Clock Transfers
- 33. Report TCCS
- 34. Report RSKM
- 35. Unconstrained Paths Summary
- 36. Timing Analyzer Messages
+ 12. Slow 1200mV 85C Model Setup: 'clk'
+ 13. Slow 1200mV 85C Model Hold: 'clk'
+ 14. Slow 1200mV 85C Model Metastability Summary
+ 15. Slow 1200mV 0C Model Fmax Summary
+ 16. Slow 1200mV 0C Model Setup Summary
+ 17. Slow 1200mV 0C Model Hold Summary
+ 18. Slow 1200mV 0C Model Recovery Summary
+ 19. Slow 1200mV 0C Model Removal Summary
+ 20. Slow 1200mV 0C Model Minimum Pulse Width Summary
+ 21. Slow 1200mV 0C Model Setup: 'clk'
+ 22. Slow 1200mV 0C Model Hold: 'clk'
+ 23. Slow 1200mV 0C Model Metastability Summary
+ 24. Fast 1200mV 0C Model Setup Summary
+ 25. Fast 1200mV 0C Model Hold Summary
+ 26. Fast 1200mV 0C Model Recovery Summary
+ 27. Fast 1200mV 0C Model Removal Summary
+ 28. Fast 1200mV 0C Model Minimum Pulse Width Summary
+ 29. Fast 1200mV 0C Model Setup: 'clk'
+ 30. Fast 1200mV 0C Model Hold: 'clk'
+ 31. Fast 1200mV 0C Model Metastability Summary
+ 32. Multicorner Timing Analysis Summary
+ 33. Board Trace Model Assignments
+ 34. Input Transition Times
+ 35. Signal Integrity Metrics (Slow 1200mv 0c Model)
+ 36. Signal Integrity Metrics (Slow 1200mv 85c Model)
+ 37. Signal Integrity Metrics (Fast 1200mv 0c Model)
+ 38. Setup Transfers
+ 39. Hold Transfers
+ 40. Report TCCS
+ 41. Report RSKM
+ 42. Unconstrained Paths Summary
+ 43. Clock Status Summary
+ 44. Unconstrained Input Ports
+ 45. Unconstrained Output Ports
+ 46. Unconstrained Input Ports
+ 47. Unconstrained Output Ports
+ 48. Timing Analyzer Messages
 
 
 
@@ -92,20 +104,27 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.3%      ;
+;     Processors 2-4         ;   0.4%      ;
 +----------------------------+-------------+
 
 
-----------
-; Clocks ;
-----------
-No clocks to report.
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                          ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
+; Clock Name ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
+; clk        ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clk } ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
 
 
---------------------------------------
-; Slow 1200mV 85C Model Fmax Summary ;
---------------------------------------
-No paths to report.
++-----------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Fmax Summary                                                                        ;
++------------+-----------------+------------+---------------------------------------------------------------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note                                                          ;
++------------+-----------------+------------+---------------------------------------------------------------+
+; 324.46 MHz ; 250.0 MHz       ; clk        ; limit due to minimum period restriction (max I/O toggle rate) ;
++------------+-----------------+------------+---------------------------------------------------------------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
 ----------------------------------
@@ -114,16 +133,22 @@ No paths to report.
 HTML report is unavailable in plain text report export.
 
 
----------------------------------------
++-------------------------------------+
 ; Slow 1200mV 85C Model Setup Summary ;
----------------------------------------
-No paths to report.
++-------+--------+--------------------+
+; Clock ; Slack  ; End Point TNS      ;
++-------+--------+--------------------+
+; clk   ; -2.082 ; -37.842            ;
++-------+--------+--------------------+
 
 
---------------------------------------
++------------------------------------+
 ; Slow 1200mV 85C Model Hold Summary ;
---------------------------------------
-No paths to report.
++-------+-------+--------------------+
+; Clock ; Slack ; End Point TNS      ;
++-------+-------+--------------------+
+; clk   ; 0.454 ; 0.000              ;
++-------+-------+--------------------+
 
 
 ------------------------------------------
@@ -138,10 +163,229 @@ No paths to report.
 No paths to report.
 
 
------------------------------------------------------
++---------------------------------------------------+
 ; Slow 1200mV 85C Model Minimum Pulse Width Summary ;
------------------------------------------------------
-No paths to report.
++-------+--------+----------------------------------+
+; Clock ; Slack  ; End Point TNS                    ;
++-------+--------+----------------------------------+
+; clk   ; -3.000 ; -40.175                          ;
++-------+--------+----------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Setup: 'clk'                                                                                         ;
++--------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node            ; To Node              ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+; -2.082 ; bits_sent[3]         ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 3.003      ;
+; -2.082 ; bits_sent[3]         ; sda~en               ; clk          ; clk         ; 1.000        ; -0.080     ; 3.003      ;
+; -2.082 ; bits_sent[3]         ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 3.003      ;
+; -2.082 ; bits_sent[3]         ; scl~en               ; clk          ; clk         ; 1.000        ; -0.080     ; 3.003      ;
+; -1.973 ; bits_sent[1]         ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.894      ;
+; -1.973 ; bits_sent[1]         ; sda~en               ; clk          ; clk         ; 1.000        ; -0.080     ; 2.894      ;
+; -1.973 ; bits_sent[1]         ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.894      ;
+; -1.973 ; bits_sent[1]         ; scl~en               ; clk          ; clk         ; 1.000        ; -0.080     ; 2.894      ;
+; -1.945 ; bits_sent[3]         ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.080     ; 2.866      ;
+; -1.945 ; bits_sent[3]         ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.080     ; 2.866      ;
+; -1.945 ; bits_sent[3]         ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.080     ; 2.866      ;
+; -1.791 ; bits_sent[1]         ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.080     ; 2.712      ;
+; -1.791 ; bits_sent[1]         ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.080     ; 2.712      ;
+; -1.791 ; bits_sent[1]         ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.080     ; 2.712      ;
+; -1.767 ; bits_sent[0]         ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.688      ;
+; -1.767 ; bits_sent[0]         ; sda~en               ; clk          ; clk         ; 1.000        ; -0.080     ; 2.688      ;
+; -1.767 ; bits_sent[0]         ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.688      ;
+; -1.767 ; bits_sent[0]         ; scl~en               ; clk          ; clk         ; 1.000        ; -0.080     ; 2.688      ;
+; -1.763 ; bits_sent[3]         ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.684      ;
+; -1.763 ; bits_sent[3]         ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.684      ;
+; -1.763 ; bits_sent[3]         ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.684      ;
+; -1.752 ; bits_sent[3]         ; bits_sent[0]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.673      ;
+; -1.670 ; bits_sent[1]         ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.591      ;
+; -1.670 ; bits_sent[1]         ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.591      ;
+; -1.670 ; bits_sent[1]         ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.591      ;
+; -1.659 ; bits_sent[1]         ; bits_sent[0]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.580      ;
+; -1.607 ; bits_sent[2]         ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.528      ;
+; -1.607 ; bits_sent[2]         ; sda~en               ; clk          ; clk         ; 1.000        ; -0.080     ; 2.528      ;
+; -1.607 ; bits_sent[2]         ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.528      ;
+; -1.607 ; bits_sent[2]         ; scl~en               ; clk          ; clk         ; 1.000        ; -0.080     ; 2.528      ;
+; -1.585 ; bits_sent[0]         ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.080     ; 2.506      ;
+; -1.585 ; bits_sent[0]         ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.080     ; 2.506      ;
+; -1.585 ; bits_sent[0]         ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.080     ; 2.506      ;
+; -1.559 ; bits_sent[3]         ; state.SENDING        ; clk          ; clk         ; 1.000        ; -0.080     ; 2.480      ;
+; -1.543 ; bits_sent[3]         ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.080     ; 2.464      ;
+; -1.539 ; state.IDLE           ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.080     ; 2.460      ;
+; -1.539 ; state.IDLE           ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.080     ; 2.460      ;
+; -1.539 ; state.IDLE           ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.080     ; 2.460      ;
+; -1.512 ; bits_sent[2]         ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.433      ;
+; -1.510 ; state.IDLE           ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.431      ;
+; -1.510 ; state.IDLE           ; sda~en               ; clk          ; clk         ; 1.000        ; -0.080     ; 2.431      ;
+; -1.510 ; state.IDLE           ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.431      ;
+; -1.510 ; state.IDLE           ; scl~en               ; clk          ; clk         ; 1.000        ; -0.080     ; 2.431      ;
+; -1.486 ; data[2]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.407      ;
+; -1.466 ; bits_sent[1]         ; state.SENDING        ; clk          ; clk         ; 1.000        ; -0.080     ; 2.387      ;
+; -1.464 ; bits_sent[0]         ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.385      ;
+; -1.464 ; bits_sent[0]         ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.385      ;
+; -1.464 ; bits_sent[0]         ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.385      ;
+; -1.453 ; bits_sent[0]         ; bits_sent[0]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.374      ;
+; -1.425 ; bits_sent[2]         ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.080     ; 2.346      ;
+; -1.425 ; bits_sent[2]         ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.080     ; 2.346      ;
+; -1.425 ; bits_sent[2]         ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.080     ; 2.346      ;
+; -1.415 ; bits_sent[1]         ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.080     ; 2.336      ;
+; -1.381 ; data[6]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.302      ;
+; -1.371 ; state.STOP           ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.292      ;
+; -1.346 ; bits_sent[3]         ; state.WAIT           ; clk          ; clk         ; 1.000        ; -0.080     ; 2.267      ;
+; -1.330 ; state.IDLE           ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.251      ;
+; -1.330 ; state.IDLE           ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.251      ;
+; -1.330 ; state.IDLE           ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.251      ;
+; -1.317 ; bit_state.BEFORE_CLK ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.238      ;
+; -1.311 ; state.SENDING        ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.232      ;
+; -1.311 ; state.SENDING        ; sda~en               ; clk          ; clk         ; 1.000        ; -0.080     ; 2.232      ;
+; -1.311 ; state.SENDING        ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.232      ;
+; -1.311 ; state.SENDING        ; scl~en               ; clk          ; clk         ; 1.000        ; -0.080     ; 2.232      ;
+; -1.304 ; bits_sent[2]         ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.225      ;
+; -1.304 ; bits_sent[2]         ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.225      ;
+; -1.293 ; bits_sent[2]         ; bits_sent[0]         ; clk          ; clk         ; 1.000        ; -0.080     ; 2.214      ;
+; -1.260 ; bits_sent[0]         ; state.SENDING        ; clk          ; clk         ; 1.000        ; -0.080     ; 2.181      ;
+; -1.246 ; bits_sent[1]         ; state.WAIT           ; clk          ; clk         ; 1.000        ; -0.080     ; 2.167      ;
+; -1.209 ; bits_sent[0]         ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.080     ; 2.130      ;
+; -1.201 ; state.STOP           ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.122      ;
+; -1.197 ; state.IDLE           ; data[3]              ; clk          ; clk         ; 1.000        ; -0.080     ; 2.118      ;
+; -1.197 ; state.IDLE           ; data[2]              ; clk          ; clk         ; 1.000        ; -0.080     ; 2.118      ;
+; -1.197 ; state.IDLE           ; data[0]              ; clk          ; clk         ; 1.000        ; -0.080     ; 2.118      ;
+; -1.197 ; state.IDLE           ; data[1]              ; clk          ; clk         ; 1.000        ; -0.080     ; 2.118      ;
+; -1.197 ; state.IDLE           ; data[7]              ; clk          ; clk         ; 1.000        ; -0.080     ; 2.118      ;
+; -1.197 ; state.IDLE           ; data[6]              ; clk          ; clk         ; 1.000        ; -0.080     ; 2.118      ;
+; -1.197 ; state.IDLE           ; data[4]              ; clk          ; clk         ; 1.000        ; -0.080     ; 2.118      ;
+; -1.197 ; state.IDLE           ; data[5]              ; clk          ; clk         ; 1.000        ; -0.080     ; 2.118      ;
+; -1.148 ; data[3]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.069      ;
+; -1.140 ; data[1]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 2.061      ;
+; -1.139 ; state.STOP           ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.080     ; 2.060      ;
+; -1.133 ; state.STOP           ; state.IDLE           ; clk          ; clk         ; 1.000        ; -0.080     ; 2.054      ;
+; -1.128 ; state.SENDING        ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.080     ; 2.049      ;
+; -1.128 ; state.SENDING        ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.080     ; 2.049      ;
+; -1.128 ; state.SENDING        ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.080     ; 2.049      ;
+; -1.100 ; bits_sent[2]         ; state.SENDING        ; clk          ; clk         ; 1.000        ; -0.080     ; 2.021      ;
+; -1.049 ; bits_sent[2]         ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.080     ; 1.970      ;
+; -1.040 ; bits_sent[0]         ; state.WAIT           ; clk          ; clk         ; 1.000        ; -0.080     ; 1.961      ;
+; -1.025 ; bit_state.AFTER_CLK  ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.080     ; 1.946      ;
+; -1.025 ; bit_state.AFTER_CLK  ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.080     ; 1.946      ;
+; -1.025 ; bit_state.AFTER_CLK  ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.080     ; 1.946      ;
+; -1.014 ; bit_state.BEFORE_CLK ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.080     ; 1.935      ;
+; -0.988 ; state.SENDING        ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.080     ; 1.909      ;
+; -0.988 ; state.SENDING        ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.080     ; 1.909      ;
+; -0.988 ; state.SENDING        ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.080     ; 1.909      ;
+; -0.943 ; bit_state.AFTER_CLK  ; state.WAIT           ; clk          ; clk         ; 1.000        ; -0.080     ; 1.864      ;
+; -0.928 ; data[5]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 1.849      ;
+; -0.888 ; data[7]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.080     ; 1.809      ;
+; -0.886 ; state.WAIT           ; sda~en               ; clk          ; clk         ; 1.000        ; -0.080     ; 1.807      ;
++--------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Hold: 'clk'                                                                                         ;
++-------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node            ; To Node              ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+; 0.454 ; bits_sent[3]         ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.080      ; 0.746      ;
+; 0.454 ; state.SENDING        ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.080      ; 0.746      ;
+; 0.454 ; bits_sent[2]         ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.080      ; 0.746      ;
+; 0.454 ; bits_sent[1]         ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.080      ; 0.746      ;
+; 0.454 ; state.IDLE           ; state.IDLE           ; clk          ; clk         ; 0.000        ; 0.080      ; 0.746      ;
+; 0.455 ; is_busy~reg0         ; is_busy~reg0         ; clk          ; clk         ; 0.000        ; 0.079      ; 0.746      ;
+; 0.455 ; state.START          ; state.START          ; clk          ; clk         ; 0.000        ; 0.079      ; 0.746      ;
+; 0.702 ; state.START          ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.079      ; 0.993      ;
+; 0.742 ; bit_state.AFTER_CLK  ; bit_state.BEFORE_CLK ; clk          ; clk         ; 0.000        ; 0.080      ; 1.034      ;
+; 0.747 ; state.IDLE           ; scl~en               ; clk          ; clk         ; 0.000        ; 0.080      ; 1.039      ;
+; 0.757 ; bit_state.AFTER_CLK  ; state.IDLE           ; clk          ; clk         ; 0.000        ; 0.080      ; 1.049      ;
+; 0.762 ; bit_state.AFTER_CLK  ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.080      ; 1.054      ;
+; 0.819 ; bits_sent[0]         ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.111      ;
+; 0.828 ; state.WAIT           ; scl~en               ; clk          ; clk         ; 0.000        ; 0.080      ; 1.120      ;
+; 0.908 ; bit_state.AT_CLK     ; bit_state.AFTER_CLK  ; clk          ; clk         ; 0.000        ; 0.080      ; 1.200      ;
+; 0.992 ; state.IDLE           ; is_busy~reg0         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.284      ;
+; 0.992 ; state.IDLE           ; state.START          ; clk          ; clk         ; 0.000        ; 0.080      ; 1.284      ;
+; 1.005 ; bit_state.AFTER_CLK  ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.080      ; 1.297      ;
+; 1.008 ; data[4]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 1.300      ;
+; 1.021 ; state.IDLE           ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.313      ;
+; 1.047 ; bit_state.AFTER_CLK  ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 1.339      ;
+; 1.103 ; state.WAIT           ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.080      ; 1.395      ;
+; 1.122 ; bit_state.AFTER_CLK  ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.414      ;
+; 1.156 ; bit_state.AFTER_CLK  ; state.START          ; clk          ; clk         ; 0.000        ; 0.080      ; 1.448      ;
+; 1.185 ; state.WAIT           ; is_busy~reg0         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.477      ;
+; 1.190 ; state.SENDING        ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.482      ;
+; 1.214 ; data[0]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 1.506      ;
+; 1.241 ; bit_state.AT_CLK     ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 1.533      ;
+; 1.242 ; state.START          ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.079      ; 1.533      ;
+; 1.260 ; state.WAIT           ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.080      ; 1.552      ;
+; 1.295 ; state.SENDING        ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.080      ; 1.587      ;
+; 1.311 ; state.SENDING        ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.080      ; 1.603      ;
+; 1.328 ; bits_sent[2]         ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.080      ; 1.620      ;
+; 1.330 ; data[5]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 1.622      ;
+; 1.342 ; state.SENDING        ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 1.634      ;
+; 1.358 ; state.IDLE           ; sda~en               ; clk          ; clk         ; 0.000        ; 0.080      ; 1.650      ;
+; 1.385 ; bits_sent[0]         ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.677      ;
+; 1.387 ; data[7]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 1.679      ;
+; 1.390 ; bits_sent[0]         ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.682      ;
+; 1.399 ; bit_state.AFTER_CLK  ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.080      ; 1.691      ;
+; 1.406 ; bits_sent[2]         ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 1.698      ;
+; 1.431 ; bits_sent[1]         ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.723      ;
+; 1.434 ; bits_sent[2]         ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.726      ;
+; 1.439 ; state.WAIT           ; sda~en               ; clk          ; clk         ; 0.000        ; 0.080      ; 1.731      ;
+; 1.452 ; state.SENDING        ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.744      ;
+; 1.452 ; state.SENDING        ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.744      ;
+; 1.452 ; state.SENDING        ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.744      ;
+; 1.459 ; bit_state.AFTER_CLK  ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.751      ;
+; 1.459 ; bit_state.AFTER_CLK  ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.751      ;
+; 1.459 ; bit_state.AFTER_CLK  ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.751      ;
+; 1.477 ; bits_sent[2]         ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.080      ; 1.769      ;
+; 1.480 ; state.SENDING        ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 1.772      ;
+; 1.493 ; bits_sent[0]         ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.080      ; 1.785      ;
+; 1.514 ; bit_state.BEFORE_CLK ; bit_state.AT_CLK     ; clk          ; clk         ; 0.000        ; 0.080      ; 1.806      ;
+; 1.518 ; bits_sent[2]         ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.080      ; 1.810      ;
+; 1.548 ; state.STOP           ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.080      ; 1.840      ;
+; 1.565 ; state.STOP           ; state.IDLE           ; clk          ; clk         ; 0.000        ; 0.080      ; 1.857      ;
+; 1.583 ; bits_sent[1]         ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 1.875      ;
+; 1.586 ; data[1]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 1.878      ;
+; 1.593 ; data[3]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 1.885      ;
+; 1.597 ; bits_sent[0]         ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.889      ;
+; 1.611 ; state.STOP           ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 1.903      ;
+; 1.642 ; bits_sent[0]         ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.080      ; 1.934      ;
+; 1.675 ; state.IDLE           ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.967      ;
+; 1.679 ; bits_sent[0]         ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 1.971      ;
+; 1.683 ; bits_sent[0]         ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.080      ; 1.975      ;
+; 1.690 ; bits_sent[1]         ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.080      ; 1.982      ;
+; 1.703 ; bits_sent[2]         ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.995      ;
+; 1.704 ; bits_sent[2]         ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.080      ; 1.996      ;
+; 1.709 ; state.IDLE           ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.080      ; 2.001      ;
+; 1.710 ; state.IDLE           ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.080      ; 2.002      ;
+; 1.735 ; bits_sent[1]         ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.080      ; 2.027      ;
+; 1.740 ; state.SENDING        ; bit_state.AFTER_CLK  ; clk          ; clk         ; 0.000        ; 0.080      ; 2.032      ;
+; 1.740 ; state.SENDING        ; bit_state.AT_CLK     ; clk          ; clk         ; 0.000        ; 0.080      ; 2.032      ;
+; 1.740 ; state.SENDING        ; bit_state.BEFORE_CLK ; clk          ; clk         ; 0.000        ; 0.080      ; 2.032      ;
+; 1.752 ; bit_state.BEFORE_CLK ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 2.044      ;
+; 1.793 ; state.STOP           ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 2.085      ;
+; 1.839 ; bits_sent[1]         ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.080      ; 2.131      ;
+; 1.868 ; bits_sent[3]         ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.080      ; 2.160      ;
+; 1.874 ; state.IDLE           ; data[3]              ; clk          ; clk         ; 0.000        ; 0.080      ; 2.166      ;
+; 1.874 ; state.IDLE           ; data[2]              ; clk          ; clk         ; 0.000        ; 0.080      ; 2.166      ;
+; 1.874 ; state.IDLE           ; data[0]              ; clk          ; clk         ; 0.000        ; 0.080      ; 2.166      ;
+; 1.874 ; state.IDLE           ; data[1]              ; clk          ; clk         ; 0.000        ; 0.080      ; 2.166      ;
+; 1.874 ; state.IDLE           ; data[7]              ; clk          ; clk         ; 0.000        ; 0.080      ; 2.166      ;
+; 1.874 ; state.IDLE           ; data[6]              ; clk          ; clk         ; 0.000        ; 0.080      ; 2.166      ;
+; 1.874 ; state.IDLE           ; data[4]              ; clk          ; clk         ; 0.000        ; 0.080      ; 2.166      ;
+; 1.874 ; state.IDLE           ; data[5]              ; clk          ; clk         ; 0.000        ; 0.080      ; 2.166      ;
+; 1.880 ; bits_sent[1]         ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.080      ; 2.172      ;
+; 1.891 ; data[6]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 2.183      ;
+; 1.902 ; data[2]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 2.194      ;
+; 1.962 ; state.SENDING        ; sda~en               ; clk          ; clk         ; 0.000        ; 0.080      ; 2.254      ;
+; 1.962 ; state.SENDING        ; scl~en               ; clk          ; clk         ; 0.000        ; 0.080      ; 2.254      ;
+; 2.017 ; bits_sent[3]         ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.080      ; 2.309      ;
+; 2.036 ; bits_sent[3]         ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.080      ; 2.328      ;
+; 2.065 ; bits_sent[1]         ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.080      ; 2.357      ;
+; 2.073 ; bits_sent[2]         ; bit_state.AFTER_CLK  ; clk          ; clk         ; 0.000        ; 0.080      ; 2.365      ;
+; 2.073 ; bits_sent[2]         ; bit_state.AT_CLK     ; clk          ; clk         ; 0.000        ; 0.080      ; 2.365      ;
+; 2.073 ; bits_sent[2]         ; bit_state.BEFORE_CLK ; clk          ; clk         ; 0.000        ; 0.080      ; 2.365      ;
+; 2.095 ; state.IDLE           ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 2.387      ;
+; 2.095 ; state.IDLE           ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.080      ; 2.387      ;
++-------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
 
 
 -----------------------------------------------
@@ -150,22 +394,32 @@ No paths to report.
 No synchronizer chains to report.
 
 
--------------------------------------
-; Slow 1200mV 0C Model Fmax Summary ;
--------------------------------------
-No paths to report.
++-----------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Fmax Summary                                                                         ;
++------------+-----------------+------------+---------------------------------------------------------------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note                                                          ;
++------------+-----------------+------------+---------------------------------------------------------------+
+; 346.38 MHz ; 250.0 MHz       ; clk        ; limit due to minimum period restriction (max I/O toggle rate) ;
++------------+-----------------+------------+---------------------------------------------------------------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
---------------------------------------
++------------------------------------+
 ; Slow 1200mV 0C Model Setup Summary ;
---------------------------------------
-No paths to report.
++-------+--------+-------------------+
+; Clock ; Slack  ; End Point TNS     ;
++-------+--------+-------------------+
+; clk   ; -1.887 ; -33.939           ;
++-------+--------+-------------------+
 
 
--------------------------------------
++-----------------------------------+
 ; Slow 1200mV 0C Model Hold Summary ;
--------------------------------------
-No paths to report.
++-------+-------+-------------------+
+; Clock ; Slack ; End Point TNS     ;
++-------+-------+-------------------+
+; clk   ; 0.403 ; 0.000             ;
++-------+-------+-------------------+
 
 
 -----------------------------------------
@@ -180,10 +434,229 @@ No paths to report.
 No paths to report.
 
 
-----------------------------------------------------
++--------------------------------------------------+
 ; Slow 1200mV 0C Model Minimum Pulse Width Summary ;
-----------------------------------------------------
-No paths to report.
++-------+--------+---------------------------------+
+; Clock ; Slack  ; End Point TNS                   ;
++-------+--------+---------------------------------+
+; clk   ; -3.000 ; -40.175                         ;
++-------+--------+---------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Setup: 'clk'                                                                                          ;
++--------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node            ; To Node              ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+; -1.887 ; bits_sent[3]         ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.818      ;
+; -1.887 ; bits_sent[3]         ; sda~en               ; clk          ; clk         ; 1.000        ; -0.071     ; 2.818      ;
+; -1.887 ; bits_sent[3]         ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.818      ;
+; -1.887 ; bits_sent[3]         ; scl~en               ; clk          ; clk         ; 1.000        ; -0.071     ; 2.818      ;
+; -1.744 ; bits_sent[1]         ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.675      ;
+; -1.744 ; bits_sent[1]         ; sda~en               ; clk          ; clk         ; 1.000        ; -0.071     ; 2.675      ;
+; -1.744 ; bits_sent[1]         ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.675      ;
+; -1.744 ; bits_sent[1]         ; scl~en               ; clk          ; clk         ; 1.000        ; -0.071     ; 2.675      ;
+; -1.695 ; bits_sent[3]         ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.071     ; 2.626      ;
+; -1.695 ; bits_sent[3]         ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.071     ; 2.626      ;
+; -1.695 ; bits_sent[3]         ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.071     ; 2.626      ;
+; -1.608 ; bits_sent[3]         ; bits_sent[0]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.539      ;
+; -1.597 ; bits_sent[3]         ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.528      ;
+; -1.597 ; bits_sent[3]         ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.528      ;
+; -1.597 ; bits_sent[3]         ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.528      ;
+; -1.571 ; bits_sent[0]         ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.502      ;
+; -1.571 ; bits_sent[0]         ; sda~en               ; clk          ; clk         ; 1.000        ; -0.071     ; 2.502      ;
+; -1.571 ; bits_sent[0]         ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.502      ;
+; -1.571 ; bits_sent[0]         ; scl~en               ; clk          ; clk         ; 1.000        ; -0.071     ; 2.502      ;
+; -1.555 ; bits_sent[1]         ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.071     ; 2.486      ;
+; -1.555 ; bits_sent[1]         ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.071     ; 2.486      ;
+; -1.555 ; bits_sent[1]         ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.071     ; 2.486      ;
+; -1.465 ; bits_sent[1]         ; bits_sent[0]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.396      ;
+; -1.454 ; bits_sent[1]         ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.385      ;
+; -1.454 ; bits_sent[1]         ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.385      ;
+; -1.454 ; bits_sent[1]         ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.385      ;
+; -1.420 ; bits_sent[2]         ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.351      ;
+; -1.420 ; bits_sent[2]         ; sda~en               ; clk          ; clk         ; 1.000        ; -0.071     ; 2.351      ;
+; -1.420 ; bits_sent[2]         ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.351      ;
+; -1.420 ; bits_sent[2]         ; scl~en               ; clk          ; clk         ; 1.000        ; -0.071     ; 2.351      ;
+; -1.419 ; bits_sent[3]         ; state.SENDING        ; clk          ; clk         ; 1.000        ; -0.071     ; 2.350      ;
+; -1.386 ; bits_sent[2]         ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.317      ;
+; -1.379 ; bits_sent[0]         ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.071     ; 2.310      ;
+; -1.379 ; bits_sent[0]         ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.071     ; 2.310      ;
+; -1.379 ; bits_sent[0]         ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.071     ; 2.310      ;
+; -1.369 ; bits_sent[3]         ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.071     ; 2.300      ;
+; -1.324 ; state.IDLE           ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.071     ; 2.255      ;
+; -1.324 ; state.IDLE           ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.071     ; 2.255      ;
+; -1.324 ; state.IDLE           ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.071     ; 2.255      ;
+; -1.316 ; state.IDLE           ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.247      ;
+; -1.316 ; state.IDLE           ; sda~en               ; clk          ; clk         ; 1.000        ; -0.071     ; 2.247      ;
+; -1.316 ; state.IDLE           ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.247      ;
+; -1.316 ; state.IDLE           ; scl~en               ; clk          ; clk         ; 1.000        ; -0.071     ; 2.247      ;
+; -1.292 ; bits_sent[0]         ; bits_sent[0]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.223      ;
+; -1.284 ; data[2]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.215      ;
+; -1.281 ; bits_sent[0]         ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.212      ;
+; -1.281 ; bits_sent[0]         ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.212      ;
+; -1.281 ; bits_sent[0]         ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.212      ;
+; -1.276 ; bits_sent[1]         ; state.SENDING        ; clk          ; clk         ; 1.000        ; -0.071     ; 2.207      ;
+; -1.239 ; data[6]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.170      ;
+; -1.228 ; bits_sent[2]         ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.071     ; 2.159      ;
+; -1.228 ; bits_sent[2]         ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.071     ; 2.159      ;
+; -1.228 ; bits_sent[2]         ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.071     ; 2.159      ;
+; -1.226 ; bits_sent[1]         ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.071     ; 2.157      ;
+; -1.222 ; state.IDLE           ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.153      ;
+; -1.222 ; state.IDLE           ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.153      ;
+; -1.222 ; state.IDLE           ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.153      ;
+; -1.216 ; bits_sent[3]         ; state.WAIT           ; clk          ; clk         ; 1.000        ; -0.071     ; 2.147      ;
+; -1.194 ; state.STOP           ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.125      ;
+; -1.150 ; bit_state.BEFORE_CLK ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.081      ;
+; -1.141 ; bits_sent[2]         ; bits_sent[0]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.072      ;
+; -1.130 ; bits_sent[2]         ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.061      ;
+; -1.130 ; bits_sent[2]         ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.071     ; 2.061      ;
+; -1.114 ; state.SENDING        ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.045      ;
+; -1.114 ; state.SENDING        ; sda~en               ; clk          ; clk         ; 1.000        ; -0.071     ; 2.045      ;
+; -1.114 ; state.SENDING        ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.045      ;
+; -1.114 ; state.SENDING        ; scl~en               ; clk          ; clk         ; 1.000        ; -0.071     ; 2.045      ;
+; -1.103 ; bits_sent[0]         ; state.SENDING        ; clk          ; clk         ; 1.000        ; -0.071     ; 2.034      ;
+; -1.086 ; state.STOP           ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 2.017      ;
+; -1.074 ; state.IDLE           ; data[3]              ; clk          ; clk         ; 1.000        ; -0.071     ; 2.005      ;
+; -1.074 ; state.IDLE           ; data[2]              ; clk          ; clk         ; 1.000        ; -0.071     ; 2.005      ;
+; -1.074 ; state.IDLE           ; data[0]              ; clk          ; clk         ; 1.000        ; -0.071     ; 2.005      ;
+; -1.074 ; state.IDLE           ; data[1]              ; clk          ; clk         ; 1.000        ; -0.071     ; 2.005      ;
+; -1.074 ; state.IDLE           ; data[7]              ; clk          ; clk         ; 1.000        ; -0.071     ; 2.005      ;
+; -1.074 ; state.IDLE           ; data[6]              ; clk          ; clk         ; 1.000        ; -0.071     ; 2.005      ;
+; -1.074 ; state.IDLE           ; data[4]              ; clk          ; clk         ; 1.000        ; -0.071     ; 2.005      ;
+; -1.074 ; state.IDLE           ; data[5]              ; clk          ; clk         ; 1.000        ; -0.071     ; 2.005      ;
+; -1.073 ; bits_sent[1]         ; state.WAIT           ; clk          ; clk         ; 1.000        ; -0.071     ; 2.004      ;
+; -1.053 ; bits_sent[0]         ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.071     ; 1.984      ;
+; -1.028 ; state.STOP           ; state.IDLE           ; clk          ; clk         ; 1.000        ; -0.071     ; 1.959      ;
+; -0.998 ; data[3]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 1.929      ;
+; -0.972 ; state.STOP           ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.071     ; 1.903      ;
+; -0.964 ; state.SENDING        ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.071     ; 1.895      ;
+; -0.964 ; state.SENDING        ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.071     ; 1.895      ;
+; -0.964 ; state.SENDING        ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.071     ; 1.895      ;
+; -0.952 ; bits_sent[2]         ; state.SENDING        ; clk          ; clk         ; 1.000        ; -0.071     ; 1.883      ;
+; -0.928 ; data[1]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 1.859      ;
+; -0.902 ; bits_sent[2]         ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.071     ; 1.833      ;
+; -0.900 ; bits_sent[0]         ; state.WAIT           ; clk          ; clk         ; 1.000        ; -0.071     ; 1.831      ;
+; -0.862 ; bit_state.BEFORE_CLK ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.071     ; 1.793      ;
+; -0.822 ; bit_state.AFTER_CLK  ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.071     ; 1.753      ;
+; -0.822 ; bit_state.AFTER_CLK  ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.071     ; 1.753      ;
+; -0.822 ; bit_state.AFTER_CLK  ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.071     ; 1.753      ;
+; -0.792 ; state.SENDING        ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.071     ; 1.723      ;
+; -0.792 ; state.SENDING        ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.071     ; 1.723      ;
+; -0.792 ; state.SENDING        ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.071     ; 1.723      ;
+; -0.761 ; bit_state.AFTER_CLK  ; state.WAIT           ; clk          ; clk         ; 1.000        ; -0.071     ; 1.692      ;
+; -0.749 ; bits_sent[2]         ; state.WAIT           ; clk          ; clk         ; 1.000        ; -0.071     ; 1.680      ;
+; -0.745 ; state.WAIT           ; sda~en               ; clk          ; clk         ; 1.000        ; -0.071     ; 1.676      ;
+; -0.742 ; data[5]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.071     ; 1.673      ;
++--------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Hold: 'clk'                                                                                          ;
++-------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node            ; To Node              ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+; 0.403 ; is_busy~reg0         ; is_busy~reg0         ; clk          ; clk         ; 0.000        ; 0.071      ; 0.669      ;
+; 0.403 ; bits_sent[3]         ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.071      ; 0.669      ;
+; 0.403 ; state.SENDING        ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.071      ; 0.669      ;
+; 0.403 ; bits_sent[2]         ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.071      ; 0.669      ;
+; 0.403 ; bits_sent[1]         ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.071      ; 0.669      ;
+; 0.403 ; state.IDLE           ; state.IDLE           ; clk          ; clk         ; 0.000        ; 0.071      ; 0.669      ;
+; 0.403 ; state.START          ; state.START          ; clk          ; clk         ; 0.000        ; 0.071      ; 0.669      ;
+; 0.660 ; state.START          ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 0.926      ;
+; 0.685 ; bit_state.AFTER_CLK  ; state.IDLE           ; clk          ; clk         ; 0.000        ; 0.071      ; 0.951      ;
+; 0.691 ; bit_state.AFTER_CLK  ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.071      ; 0.957      ;
+; 0.696 ; state.IDLE           ; scl~en               ; clk          ; clk         ; 0.000        ; 0.071      ; 0.962      ;
+; 0.705 ; bit_state.AFTER_CLK  ; bit_state.BEFORE_CLK ; clk          ; clk         ; 0.000        ; 0.071      ; 0.971      ;
+; 0.765 ; bits_sent[0]         ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.031      ;
+; 0.771 ; state.WAIT           ; scl~en               ; clk          ; clk         ; 0.000        ; 0.071      ; 1.037      ;
+; 0.849 ; bit_state.AT_CLK     ; bit_state.AFTER_CLK  ; clk          ; clk         ; 0.000        ; 0.071      ; 1.115      ;
+; 0.886 ; state.IDLE           ; is_busy~reg0         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.152      ;
+; 0.886 ; state.IDLE           ; state.START          ; clk          ; clk         ; 0.000        ; 0.071      ; 1.152      ;
+; 0.906 ; data[4]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.172      ;
+; 0.907 ; bit_state.AFTER_CLK  ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.173      ;
+; 0.917 ; state.IDLE           ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.183      ;
+; 0.940 ; bit_state.AFTER_CLK  ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.206      ;
+; 0.985 ; state.WAIT           ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.251      ;
+; 1.026 ; bit_state.AFTER_CLK  ; state.START          ; clk          ; clk         ; 0.000        ; 0.071      ; 1.292      ;
+; 1.030 ; bit_state.AFTER_CLK  ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.296      ;
+; 1.052 ; state.WAIT           ; is_busy~reg0         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.318      ;
+; 1.087 ; data[0]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.353      ;
+; 1.090 ; state.SENDING        ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.356      ;
+; 1.100 ; state.START          ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.071      ; 1.366      ;
+; 1.118 ; bit_state.AT_CLK     ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.384      ;
+; 1.143 ; state.WAIT           ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.409      ;
+; 1.164 ; state.SENDING        ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.430      ;
+; 1.188 ; state.SENDING        ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.454      ;
+; 1.203 ; bits_sent[2]         ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.469      ;
+; 1.205 ; state.SENDING        ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.471      ;
+; 1.240 ; bits_sent[0]         ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.506      ;
+; 1.242 ; data[5]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.508      ;
+; 1.247 ; data[7]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.513      ;
+; 1.251 ; bits_sent[2]         ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.517      ;
+; 1.252 ; bits_sent[0]         ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.518      ;
+; 1.253 ; state.IDLE           ; sda~en               ; clk          ; clk         ; 0.000        ; 0.071      ; 1.519      ;
+; 1.308 ; bit_state.AFTER_CLK  ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.574      ;
+; 1.328 ; state.WAIT           ; sda~en               ; clk          ; clk         ; 0.000        ; 0.071      ; 1.594      ;
+; 1.334 ; bits_sent[2]         ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.071      ; 1.600      ;
+; 1.339 ; bits_sent[1]         ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.605      ;
+; 1.341 ; bits_sent[2]         ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.607      ;
+; 1.354 ; state.SENDING        ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.620      ;
+; 1.354 ; state.SENDING        ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.620      ;
+; 1.354 ; state.SENDING        ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.620      ;
+; 1.356 ; bits_sent[0]         ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.622      ;
+; 1.365 ; state.SENDING        ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.631      ;
+; 1.369 ; bit_state.AFTER_CLK  ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.635      ;
+; 1.369 ; bit_state.AFTER_CLK  ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.635      ;
+; 1.369 ; bit_state.AFTER_CLK  ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.635      ;
+; 1.371 ; bits_sent[2]         ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.637      ;
+; 1.393 ; state.STOP           ; state.IDLE           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.659      ;
+; 1.405 ; bit_state.BEFORE_CLK ; bit_state.AT_CLK     ; clk          ; clk         ; 0.000        ; 0.071      ; 1.671      ;
+; 1.405 ; state.STOP           ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.671      ;
+; 1.421 ; bits_sent[0]         ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.687      ;
+; 1.428 ; data[3]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.694      ;
+; 1.436 ; bits_sent[1]         ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.702      ;
+; 1.437 ; state.STOP           ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.703      ;
+; 1.480 ; data[1]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.746      ;
+; 1.487 ; bits_sent[0]         ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.071      ; 1.753      ;
+; 1.491 ; state.IDLE           ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.757      ;
+; 1.508 ; bits_sent[0]         ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.774      ;
+; 1.518 ; state.IDLE           ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.784      ;
+; 1.520 ; state.IDLE           ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.786      ;
+; 1.524 ; bits_sent[0]         ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.790      ;
+; 1.538 ; bits_sent[1]         ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.804      ;
+; 1.548 ; bits_sent[2]         ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.814      ;
+; 1.561 ; bits_sent[2]         ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.827      ;
+; 1.584 ; bit_state.BEFORE_CLK ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.850      ;
+; 1.589 ; bits_sent[1]         ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.071      ; 1.855      ;
+; 1.613 ; state.SENDING        ; bit_state.AFTER_CLK  ; clk          ; clk         ; 0.000        ; 0.071      ; 1.879      ;
+; 1.613 ; state.SENDING        ; bit_state.AT_CLK     ; clk          ; clk         ; 0.000        ; 0.071      ; 1.879      ;
+; 1.613 ; state.SENDING        ; bit_state.BEFORE_CLK ; clk          ; clk         ; 0.000        ; 0.071      ; 1.879      ;
+; 1.627 ; state.STOP           ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.893      ;
+; 1.669 ; bits_sent[1]         ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.071      ; 1.935      ;
+; 1.671 ; bits_sent[3]         ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.937      ;
+; 1.696 ; data[6]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 1.962      ;
+; 1.702 ; state.IDLE           ; data[3]              ; clk          ; clk         ; 0.000        ; 0.071      ; 1.968      ;
+; 1.702 ; state.IDLE           ; data[2]              ; clk          ; clk         ; 0.000        ; 0.071      ; 1.968      ;
+; 1.702 ; state.IDLE           ; data[0]              ; clk          ; clk         ; 0.000        ; 0.071      ; 1.968      ;
+; 1.702 ; state.IDLE           ; data[1]              ; clk          ; clk         ; 0.000        ; 0.071      ; 1.968      ;
+; 1.702 ; state.IDLE           ; data[7]              ; clk          ; clk         ; 0.000        ; 0.071      ; 1.968      ;
+; 1.702 ; state.IDLE           ; data[6]              ; clk          ; clk         ; 0.000        ; 0.071      ; 1.968      ;
+; 1.702 ; state.IDLE           ; data[4]              ; clk          ; clk         ; 0.000        ; 0.071      ; 1.968      ;
+; 1.702 ; state.IDLE           ; data[5]              ; clk          ; clk         ; 0.000        ; 0.071      ; 1.968      ;
+; 1.706 ; bits_sent[1]         ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.071      ; 1.972      ;
+; 1.745 ; data[2]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.071      ; 2.011      ;
+; 1.802 ; bits_sent[3]         ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.071      ; 2.068      ;
+; 1.836 ; state.SENDING        ; sda~en               ; clk          ; clk         ; 0.000        ; 0.071      ; 2.102      ;
+; 1.836 ; state.SENDING        ; scl~en               ; clk          ; clk         ; 0.000        ; 0.071      ; 2.102      ;
+; 1.839 ; bits_sent[3]         ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.071      ; 2.105      ;
+; 1.883 ; bits_sent[1]         ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.071      ; 2.149      ;
+; 1.924 ; bits_sent[2]         ; bit_state.AFTER_CLK  ; clk          ; clk         ; 0.000        ; 0.071      ; 2.190      ;
+; 1.924 ; bits_sent[2]         ; bit_state.AT_CLK     ; clk          ; clk         ; 0.000        ; 0.071      ; 2.190      ;
+; 1.924 ; bits_sent[2]         ; bit_state.BEFORE_CLK ; clk          ; clk         ; 0.000        ; 0.071      ; 2.190      ;
+; 1.943 ; state.IDLE           ; bit_state.AFTER_CLK  ; clk          ; clk         ; 0.000        ; 0.071      ; 2.209      ;
+; 1.943 ; state.IDLE           ; bit_state.AT_CLK     ; clk          ; clk         ; 0.000        ; 0.071      ; 2.209      ;
++-------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
 
 
 ----------------------------------------------
@@ -192,16 +665,22 @@ No paths to report.
 No synchronizer chains to report.
 
 
---------------------------------------
++------------------------------------+
 ; Fast 1200mV 0C Model Setup Summary ;
---------------------------------------
-No paths to report.
++-------+--------+-------------------+
+; Clock ; Slack  ; End Point TNS     ;
++-------+--------+-------------------+
+; clk   ; -0.333 ; -3.194            ;
++-------+--------+-------------------+
 
 
--------------------------------------
++-----------------------------------+
 ; Fast 1200mV 0C Model Hold Summary ;
--------------------------------------
-No paths to report.
++-------+-------+-------------------+
+; Clock ; Slack ; End Point TNS     ;
++-------+-------+-------------------+
+; clk   ; 0.187 ; 0.000             ;
++-------+-------+-------------------+
 
 
 -----------------------------------------
@@ -216,10 +695,229 @@ No paths to report.
 No paths to report.
 
 
-----------------------------------------------------
++--------------------------------------------------+
 ; Fast 1200mV 0C Model Minimum Pulse Width Summary ;
-----------------------------------------------------
-No paths to report.
++-------+--------+---------------------------------+
+; Clock ; Slack  ; End Point TNS                   ;
++-------+--------+---------------------------------+
+; clk   ; -3.000 ; -29.411                         ;
++-------+--------+---------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Fast 1200mV 0C Model Setup: 'clk'                                                                                          ;
++--------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node            ; To Node              ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+; -0.333 ; bits_sent[3]         ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 1.285      ;
+; -0.333 ; bits_sent[3]         ; sda~en               ; clk          ; clk         ; 1.000        ; -0.035     ; 1.285      ;
+; -0.333 ; bits_sent[3]         ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 1.285      ;
+; -0.333 ; bits_sent[3]         ; scl~en               ; clk          ; clk         ; 1.000        ; -0.035     ; 1.285      ;
+; -0.264 ; bits_sent[3]         ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.036     ; 1.215      ;
+; -0.264 ; bits_sent[3]         ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.036     ; 1.215      ;
+; -0.264 ; bits_sent[3]         ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.036     ; 1.215      ;
+; -0.257 ; bits_sent[1]         ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 1.209      ;
+; -0.257 ; bits_sent[1]         ; sda~en               ; clk          ; clk         ; 1.000        ; -0.035     ; 1.209      ;
+; -0.257 ; bits_sent[1]         ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 1.209      ;
+; -0.257 ; bits_sent[1]         ; scl~en               ; clk          ; clk         ; 1.000        ; -0.035     ; 1.209      ;
+; -0.209 ; bits_sent[3]         ; bits_sent[0]         ; clk          ; clk         ; 1.000        ; -0.036     ; 1.160      ;
+; -0.208 ; bits_sent[1]         ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.036     ; 1.159      ;
+; -0.208 ; bits_sent[1]         ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.036     ; 1.159      ;
+; -0.208 ; bits_sent[1]         ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.036     ; 1.159      ;
+; -0.190 ; bits_sent[3]         ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.036     ; 1.141      ;
+; -0.190 ; bits_sent[3]         ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.036     ; 1.141      ;
+; -0.189 ; bits_sent[3]         ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.036     ; 1.140      ;
+; -0.155 ; bits_sent[0]         ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 1.107      ;
+; -0.155 ; bits_sent[0]         ; sda~en               ; clk          ; clk         ; 1.000        ; -0.035     ; 1.107      ;
+; -0.155 ; bits_sent[0]         ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 1.107      ;
+; -0.155 ; bits_sent[0]         ; scl~en               ; clk          ; clk         ; 1.000        ; -0.035     ; 1.107      ;
+; -0.132 ; bits_sent[1]         ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.036     ; 1.083      ;
+; -0.132 ; bits_sent[1]         ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.036     ; 1.083      ;
+; -0.131 ; bits_sent[3]         ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.036     ; 1.082      ;
+; -0.131 ; bits_sent[1]         ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.036     ; 1.082      ;
+; -0.125 ; bits_sent[3]         ; state.SENDING        ; clk          ; clk         ; 1.000        ; -0.036     ; 1.076      ;
+; -0.121 ; bits_sent[1]         ; bits_sent[0]         ; clk          ; clk         ; 1.000        ; -0.036     ; 1.072      ;
+; -0.106 ; bits_sent[0]         ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.036     ; 1.057      ;
+; -0.106 ; bits_sent[0]         ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.036     ; 1.057      ;
+; -0.106 ; bits_sent[0]         ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.036     ; 1.057      ;
+; -0.106 ; bits_sent[2]         ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.036     ; 1.057      ;
+; -0.100 ; state.IDLE           ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.036     ; 1.051      ;
+; -0.100 ; state.IDLE           ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.036     ; 1.051      ;
+; -0.100 ; state.IDLE           ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.036     ; 1.051      ;
+; -0.091 ; bits_sent[2]         ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 1.043      ;
+; -0.091 ; bits_sent[2]         ; sda~en               ; clk          ; clk         ; 1.000        ; -0.035     ; 1.043      ;
+; -0.091 ; bits_sent[2]         ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 1.043      ;
+; -0.091 ; bits_sent[2]         ; scl~en               ; clk          ; clk         ; 1.000        ; -0.035     ; 1.043      ;
+; -0.086 ; state.IDLE           ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 1.038      ;
+; -0.086 ; state.IDLE           ; sda~en               ; clk          ; clk         ; 1.000        ; -0.035     ; 1.038      ;
+; -0.086 ; state.IDLE           ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 1.038      ;
+; -0.086 ; state.IDLE           ; scl~en               ; clk          ; clk         ; 1.000        ; -0.035     ; 1.038      ;
+; -0.062 ; data[2]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.036     ; 1.013      ;
+; -0.052 ; state.STOP           ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 1.004      ;
+; -0.047 ; bits_sent[1]         ; state.SENDING        ; clk          ; clk         ; 1.000        ; -0.036     ; 0.998      ;
+; -0.042 ; bits_sent[2]         ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.036     ; 0.993      ;
+; -0.042 ; bits_sent[2]         ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.036     ; 0.993      ;
+; -0.042 ; bits_sent[2]         ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.036     ; 0.993      ;
+; -0.040 ; data[6]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.036     ; 0.991      ;
+; -0.036 ; bits_sent[3]         ; state.WAIT           ; clk          ; clk         ; 1.000        ; -0.036     ; 0.987      ;
+; -0.030 ; bits_sent[0]         ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.981      ;
+; -0.030 ; bits_sent[0]         ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.981      ;
+; -0.029 ; bits_sent[0]         ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.980      ;
+; -0.028 ; bit_state.BEFORE_CLK ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 0.980      ;
+; -0.026 ; bits_sent[1]         ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.036     ; 0.977      ;
+; -0.021 ; bits_sent[0]         ; bits_sent[0]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.972      ;
+; -0.018 ; state.IDLE           ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.969      ;
+; -0.018 ; state.IDLE           ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.969      ;
+; -0.017 ; state.IDLE           ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.968      ;
+; 0.005  ; state.SENDING        ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 0.947      ;
+; 0.005  ; state.SENDING        ; sda~en               ; clk          ; clk         ; 1.000        ; -0.035     ; 0.947      ;
+; 0.005  ; state.SENDING        ; scl~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 0.947      ;
+; 0.005  ; state.SENDING        ; scl~en               ; clk          ; clk         ; 1.000        ; -0.035     ; 0.947      ;
+; 0.018  ; state.STOP           ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.035     ; 0.934      ;
+; 0.034  ; bits_sent[2]         ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.917      ;
+; 0.035  ; bits_sent[2]         ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.916      ;
+; 0.042  ; state.IDLE           ; data[3]              ; clk          ; clk         ; 1.000        ; -0.035     ; 0.910      ;
+; 0.042  ; state.IDLE           ; data[2]              ; clk          ; clk         ; 1.000        ; -0.035     ; 0.910      ;
+; 0.042  ; state.IDLE           ; data[0]              ; clk          ; clk         ; 1.000        ; -0.035     ; 0.910      ;
+; 0.042  ; state.IDLE           ; data[1]              ; clk          ; clk         ; 1.000        ; -0.035     ; 0.910      ;
+; 0.042  ; state.IDLE           ; data[7]              ; clk          ; clk         ; 1.000        ; -0.035     ; 0.910      ;
+; 0.042  ; state.IDLE           ; data[6]              ; clk          ; clk         ; 1.000        ; -0.035     ; 0.910      ;
+; 0.042  ; state.IDLE           ; data[4]              ; clk          ; clk         ; 1.000        ; -0.035     ; 0.910      ;
+; 0.042  ; state.IDLE           ; data[5]              ; clk          ; clk         ; 1.000        ; -0.035     ; 0.910      ;
+; 0.045  ; bits_sent[2]         ; bits_sent[0]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.906      ;
+; 0.052  ; state.STOP           ; state.IDLE           ; clk          ; clk         ; 1.000        ; -0.036     ; 0.899      ;
+; 0.055  ; bits_sent[0]         ; state.SENDING        ; clk          ; clk         ; 1.000        ; -0.036     ; 0.896      ;
+; 0.057  ; bits_sent[0]         ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.036     ; 0.894      ;
+; 0.060  ; bits_sent[1]         ; state.WAIT           ; clk          ; clk         ; 1.000        ; -0.036     ; 0.891      ;
+; 0.062  ; state.STOP           ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.036     ; 0.889      ;
+; 0.064  ; data[1]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.036     ; 0.887      ;
+; 0.085  ; data[3]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.036     ; 0.866      ;
+; 0.104  ; bit_state.AFTER_CLK  ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.847      ;
+; 0.104  ; bit_state.AFTER_CLK  ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.847      ;
+; 0.105  ; bit_state.AFTER_CLK  ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.846      ;
+; 0.107  ; state.SENDING        ; bit_state.AFTER_CLK  ; clk          ; clk         ; 1.000        ; -0.036     ; 0.844      ;
+; 0.107  ; state.SENDING        ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.036     ; 0.844      ;
+; 0.107  ; state.SENDING        ; bit_state.BEFORE_CLK ; clk          ; clk         ; 1.000        ; -0.036     ; 0.844      ;
+; 0.119  ; bits_sent[2]         ; state.SENDING        ; clk          ; clk         ; 1.000        ; -0.036     ; 0.832      ;
+; 0.120  ; state.SENDING        ; bits_sent[2]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.831      ;
+; 0.120  ; state.SENDING        ; bits_sent[1]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.831      ;
+; 0.121  ; state.SENDING        ; bits_sent[3]         ; clk          ; clk         ; 1.000        ; -0.036     ; 0.830      ;
+; 0.127  ; bits_sent[2]         ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.036     ; 0.824      ;
+; 0.152  ; bits_sent[0]         ; state.WAIT           ; clk          ; clk         ; 1.000        ; -0.036     ; 0.799      ;
+; 0.157  ; bit_state.AFTER_CLK  ; state.WAIT           ; clk          ; clk         ; 1.000        ; -0.036     ; 0.794      ;
+; 0.162  ; data[5]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.036     ; 0.789      ;
+; 0.179  ; bit_state.BEFORE_CLK ; bit_state.AT_CLK     ; clk          ; clk         ; 1.000        ; -0.036     ; 0.772      ;
+; 0.186  ; data[7]              ; sda~reg0             ; clk          ; clk         ; 1.000        ; -0.036     ; 0.765      ;
+; 0.190  ; state.SENDING        ; state.STOP           ; clk          ; clk         ; 1.000        ; -0.036     ; 0.761      ;
++--------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Fast 1200mV 0C Model Hold: 'clk'                                                                                          ;
++-------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node            ; To Node              ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
+; 0.187 ; is_busy~reg0         ; is_busy~reg0         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; bits_sent[3]         ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; state.SENDING        ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; bits_sent[2]         ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; bits_sent[1]         ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; state.IDLE           ; state.IDLE           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; state.START          ; state.START          ; clk          ; clk         ; 0.000        ; 0.036      ; 0.307      ;
+; 0.273 ; state.START          ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.036      ; 0.393      ;
+; 0.288 ; bit_state.AFTER_CLK  ; state.IDLE           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.408      ;
+; 0.290 ; state.IDLE           ; scl~en               ; clk          ; clk         ; 0.000        ; 0.037      ; 0.411      ;
+; 0.294 ; bit_state.AFTER_CLK  ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.036      ; 0.414      ;
+; 0.295 ; bit_state.AFTER_CLK  ; bit_state.BEFORE_CLK ; clk          ; clk         ; 0.000        ; 0.036      ; 0.415      ;
+; 0.323 ; state.WAIT           ; scl~en               ; clk          ; clk         ; 0.000        ; 0.037      ; 0.444      ;
+; 0.332 ; bits_sent[0]         ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.452      ;
+; 0.338 ; bit_state.AT_CLK     ; bit_state.AFTER_CLK  ; clk          ; clk         ; 0.000        ; 0.036      ; 0.458      ;
+; 0.386 ; state.IDLE           ; state.START          ; clk          ; clk         ; 0.000        ; 0.037      ; 0.507      ;
+; 0.387 ; state.IDLE           ; is_busy~reg0         ; clk          ; clk         ; 0.000        ; 0.037      ; 0.508      ;
+; 0.398 ; data[4]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.036      ; 0.518      ;
+; 0.398 ; bit_state.AFTER_CLK  ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.518      ;
+; 0.401 ; state.IDLE           ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.521      ;
+; 0.408 ; bit_state.AFTER_CLK  ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.037      ; 0.529      ;
+; 0.426 ; state.WAIT           ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.546      ;
+; 0.444 ; bit_state.AFTER_CLK  ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.564      ;
+; 0.455 ; bit_state.AFTER_CLK  ; state.START          ; clk          ; clk         ; 0.000        ; 0.037      ; 0.576      ;
+; 0.465 ; state.WAIT           ; is_busy~reg0         ; clk          ; clk         ; 0.000        ; 0.037      ; 0.586      ;
+; 0.470 ; state.SENDING        ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.590      ;
+; 0.472 ; bit_state.AT_CLK     ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.037      ; 0.593      ;
+; 0.482 ; state.WAIT           ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.602      ;
+; 0.492 ; state.START          ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.035      ; 0.611      ;
+; 0.493 ; data[0]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.036      ; 0.613      ;
+; 0.506 ; state.SENDING        ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.626      ;
+; 0.514 ; state.SENDING        ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.634      ;
+; 0.516 ; state.SENDING        ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.037      ; 0.637      ;
+; 0.529 ; data[5]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.036      ; 0.649      ;
+; 0.530 ; state.IDLE           ; sda~en               ; clk          ; clk         ; 0.000        ; 0.037      ; 0.651      ;
+; 0.543 ; bits_sent[0]         ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.663      ;
+; 0.550 ; data[7]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.036      ; 0.670      ;
+; 0.551 ; bits_sent[0]         ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.671      ;
+; 0.556 ; bits_sent[2]         ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.037      ; 0.677      ;
+; 0.563 ; state.WAIT           ; sda~en               ; clk          ; clk         ; 0.000        ; 0.037      ; 0.684      ;
+; 0.569 ; bit_state.AFTER_CLK  ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.689      ;
+; 0.571 ; bits_sent[1]         ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.691      ;
+; 0.573 ; state.SENDING        ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.037      ; 0.694      ;
+; 0.573 ; bits_sent[2]         ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.693      ;
+; 0.574 ; state.SENDING        ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.694      ;
+; 0.574 ; state.SENDING        ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.694      ;
+; 0.574 ; state.SENDING        ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.694      ;
+; 0.574 ; bits_sent[2]         ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.694      ;
+; 0.582 ; bit_state.AFTER_CLK  ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.702      ;
+; 0.582 ; bit_state.AFTER_CLK  ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.702      ;
+; 0.582 ; bit_state.AFTER_CLK  ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.702      ;
+; 0.597 ; state.STOP           ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.717      ;
+; 0.613 ; bit_state.BEFORE_CLK ; bit_state.AT_CLK     ; clk          ; clk         ; 0.000        ; 0.036      ; 0.733      ;
+; 0.622 ; data[1]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.036      ; 0.742      ;
+; 0.624 ; bits_sent[1]         ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.037      ; 0.745      ;
+; 0.629 ; state.STOP           ; state.IDLE           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.749      ;
+; 0.634 ; state.STOP           ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.037      ; 0.755      ;
+; 0.637 ; bits_sent[0]         ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.757      ;
+; 0.640 ; bits_sent[0]         ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.760      ;
+; 0.645 ; data[3]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.036      ; 0.765      ;
+; 0.647 ; bits_sent[2]         ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.036      ; 0.767      ;
+; 0.649 ; bits_sent[2]         ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.769      ;
+; 0.652 ; bits_sent[0]         ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.037      ; 0.773      ;
+; 0.669 ; state.IDLE           ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.789      ;
+; 0.674 ; state.IDLE           ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.794      ;
+; 0.675 ; state.IDLE           ; bits_sent[3]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.795      ;
+; 0.680 ; bit_state.BEFORE_CLK ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.037      ; 0.801      ;
+; 0.691 ; state.STOP           ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.037      ; 0.812      ;
+; 0.697 ; bits_sent[1]         ; bits_sent[2]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.817      ;
+; 0.708 ; bits_sent[2]         ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.828      ;
+; 0.709 ; bits_sent[0]         ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.036      ; 0.829      ;
+; 0.710 ; bits_sent[0]         ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.830      ;
+; 0.717 ; bits_sent[2]         ; bits_sent[1]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.837      ;
+; 0.719 ; bits_sent[1]         ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.839      ;
+; 0.728 ; state.SENDING        ; bit_state.AFTER_CLK  ; clk          ; clk         ; 0.000        ; 0.036      ; 0.848      ;
+; 0.728 ; state.SENDING        ; bit_state.AT_CLK     ; clk          ; clk         ; 0.000        ; 0.036      ; 0.848      ;
+; 0.728 ; state.SENDING        ; bit_state.BEFORE_CLK ; clk          ; clk         ; 0.000        ; 0.036      ; 0.848      ;
+; 0.730 ; bits_sent[3]         ; state.WAIT           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.850      ;
+; 0.734 ; data[6]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.036      ; 0.854      ;
+; 0.755 ; state.IDLE           ; data[3]              ; clk          ; clk         ; 0.000        ; 0.037      ; 0.876      ;
+; 0.755 ; state.IDLE           ; data[2]              ; clk          ; clk         ; 0.000        ; 0.037      ; 0.876      ;
+; 0.755 ; state.IDLE           ; data[0]              ; clk          ; clk         ; 0.000        ; 0.037      ; 0.876      ;
+; 0.755 ; state.IDLE           ; data[1]              ; clk          ; clk         ; 0.000        ; 0.037      ; 0.876      ;
+; 0.755 ; state.IDLE           ; data[7]              ; clk          ; clk         ; 0.000        ; 0.037      ; 0.876      ;
+; 0.755 ; state.IDLE           ; data[6]              ; clk          ; clk         ; 0.000        ; 0.037      ; 0.876      ;
+; 0.755 ; state.IDLE           ; data[4]              ; clk          ; clk         ; 0.000        ; 0.037      ; 0.876      ;
+; 0.755 ; state.IDLE           ; data[5]              ; clk          ; clk         ; 0.000        ; 0.037      ; 0.876      ;
+; 0.760 ; data[2]              ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.036      ; 0.880      ;
+; 0.792 ; bits_sent[1]         ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.036      ; 0.912      ;
+; 0.801 ; state.SENDING        ; sda~en               ; clk          ; clk         ; 0.000        ; 0.037      ; 0.922      ;
+; 0.801 ; state.SENDING        ; scl~en               ; clk          ; clk         ; 0.000        ; 0.037      ; 0.922      ;
+; 0.802 ; bits_sent[3]         ; state.SENDING        ; clk          ; clk         ; 0.000        ; 0.036      ; 0.922      ;
+; 0.803 ; bits_sent[3]         ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.923      ;
+; 0.808 ; bits_sent[1]         ; state.STOP           ; clk          ; clk         ; 0.000        ; 0.036      ; 0.928      ;
+; 0.849 ; state.IDLE           ; sda~reg0             ; clk          ; clk         ; 0.000        ; 0.037      ; 0.970      ;
+; 0.849 ; state.IDLE           ; scl~reg0             ; clk          ; clk         ; 0.000        ; 0.037      ; 0.970      ;
+; 0.853 ; bits_sent[1]         ; bits_sent[0]         ; clk          ; clk         ; 0.000        ; 0.036      ; 0.973      ;
+; 0.858 ; state.IDLE           ; bit_state.AFTER_CLK  ; clk          ; clk         ; 0.000        ; 0.036      ; 0.978      ;
+; 0.858 ; state.IDLE           ; bit_state.AT_CLK     ; clk          ; clk         ; 0.000        ; 0.036      ; 0.978      ;
+; 0.858 ; state.IDLE           ; bit_state.BEFORE_CLK ; clk          ; clk         ; 0.000        ; 0.036      ; 0.978      ;
++-------+----------------------+----------------------+--------------+-------------+--------------+------------+------------+
 
 
 ----------------------------------------------
@@ -228,14 +926,16 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+----------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                        ;
-+------------------+-------+------+----------+---------+---------------------+
-; Clock            ; Setup ; Hold ; Recovery ; Removal ; Minimum Pulse Width ;
-+------------------+-------+------+----------+---------+---------------------+
-; Worst-case Slack ; N/A   ; N/A  ; N/A      ; N/A     ; N/A                 ;
-; Design-wide TNS  ; 0.0   ; 0.0  ; 0.0      ; 0.0     ; 0.0                 ;
-+------------------+-------+------+----------+---------+---------------------+
++-------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                           ;
++------------------+---------+-------+----------+---------+---------------------+
+; Clock            ; Setup   ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+---------+-------+----------+---------+---------------------+
+; Worst-case Slack ; -2.082  ; 0.187 ; N/A      ; N/A     ; -3.000              ;
+;  clk             ; -2.082  ; 0.187 ; N/A      ; N/A     ; -3.000              ;
+; Design-wide TNS  ; -37.842 ; 0.0   ; 0.0      ; 0.0     ; -40.175             ;
+;  clk             ; -37.842 ; 0.000 ; N/A      ; N/A     ; -40.175             ;
++------------------+---------+-------+----------+---------+---------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -243,6 +943,9 @@ No synchronizer chains to report.
 +---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
 ; Pin           ; I/O Standard ; Near Tline Length ; Near Tline L per Length ; Near Tline C per Length ; Near Series R ; Near Differential R ; Near Pull-up R ; Near Pull-down R ; Near C ; Far Tline Length ; Far Tline L per Length ; Far Tline C per Length ; Far Series R ; Far Pull-up R ; Far Pull-down R ; Far C ; Termination Voltage ; Far Differential R ; EBD File Name ; EBD Signal Name ; EBD Far-end ;
 +---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; sda           ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; scl           ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; is_busy       ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ~ALTERA_DCLK~ ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ~ALTERA_nCEO~ ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 +---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
@@ -253,7 +956,17 @@ No synchronizer chains to report.
 +-------------------------+--------------+-----------------+-----------------+
 ; Pin                     ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
 +-------------------------+--------------+-----------------+-----------------+
+; send_en                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; clk                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; is_addr                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; data_in[1]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; data_in[2]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; data_in[3]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; data_in[0]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; data_in[5]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; data_in[6]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; data_in[7]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; data_in[4]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_ASDO_DATA1~     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_FLASH_nCE_nCSO~ ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_DATA0~          ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
@@ -265,6 +978,9 @@ No synchronizer chains to report.
 +---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 ; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
 +---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; sda           ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.07e-09 V                   ; 2.36 V              ; -0.00737 V          ; 0.209 V                              ; 0.012 V                              ; 5.22e-10 s                  ; 5.33e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.07e-09 V                  ; 2.36 V             ; -0.00737 V         ; 0.209 V                             ; 0.012 V                             ; 5.22e-10 s                 ; 5.33e-10 s                 ; Yes                       ; Yes                       ;
+; scl           ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.07e-09 V                   ; 2.36 V              ; -0.00737 V          ; 0.209 V                              ; 0.012 V                              ; 5.22e-10 s                  ; 5.33e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.07e-09 V                  ; 2.36 V             ; -0.00737 V         ; 0.209 V                             ; 0.012 V                             ; 5.22e-10 s                 ; 5.33e-10 s                 ; Yes                       ; Yes                       ;
+; is_busy       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.07e-09 V                   ; 2.36 V              ; -0.00737 V          ; 0.209 V                              ; 0.012 V                              ; 5.22e-10 s                  ; 5.33e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.07e-09 V                  ; 2.36 V             ; -0.00737 V         ; 0.209 V                             ; 0.012 V                             ; 5.22e-10 s                 ; 5.33e-10 s                 ; Yes                       ; Yes                       ;
 ; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.74e-09 V                   ; 2.37 V              ; -0.0346 V           ; 0.198 V                              ; 0.094 V                              ; 3.14e-10 s                  ; 2.92e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.74e-09 V                  ; 2.37 V             ; -0.0346 V          ; 0.198 V                             ; 0.094 V                             ; 3.14e-10 s                 ; 2.92e-10 s                 ; Yes                       ; Yes                       ;
 ; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.57e-09 V                   ; 2.37 V              ; -0.00683 V          ; 0.171 V                              ; 0.018 V                              ; 4.97e-10 s                  ; 6.66e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.57e-09 V                  ; 2.37 V             ; -0.00683 V         ; 0.171 V                             ; 0.018 V                             ; 4.97e-10 s                 ; 6.66e-10 s                 ; Yes                       ; Yes                       ;
 +---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
@@ -275,6 +991,9 @@ No synchronizer chains to report.
 +---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 ; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
 +---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; sda           ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.93e-07 V                   ; 2.34 V              ; -0.00869 V          ; 0.14 V                               ; 0.046 V                              ; 6.89e-10 s                  ; 6.56e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.93e-07 V                  ; 2.34 V             ; -0.00869 V         ; 0.14 V                              ; 0.046 V                             ; 6.89e-10 s                 ; 6.56e-10 s                 ; Yes                       ; Yes                       ;
+; scl           ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.93e-07 V                   ; 2.34 V              ; -0.00869 V          ; 0.14 V                               ; 0.046 V                              ; 6.89e-10 s                  ; 6.56e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.93e-07 V                  ; 2.34 V             ; -0.00869 V         ; 0.14 V                              ; 0.046 V                             ; 6.89e-10 s                 ; 6.56e-10 s                 ; Yes                       ; Yes                       ;
+; is_busy       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.93e-07 V                   ; 2.34 V              ; -0.00869 V          ; 0.14 V                               ; 0.046 V                              ; 6.89e-10 s                  ; 6.56e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.93e-07 V                  ; 2.34 V             ; -0.00869 V         ; 0.14 V                              ; 0.046 V                             ; 6.89e-10 s                 ; 6.56e-10 s                 ; Yes                       ; Yes                       ;
 ; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.55e-07 V                   ; 2.35 V              ; -0.00221 V          ; 0.097 V                              ; 0.005 V                              ; 4.49e-10 s                  ; 3.85e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.55e-07 V                  ; 2.35 V             ; -0.00221 V         ; 0.097 V                             ; 0.005 V                             ; 4.49e-10 s                 ; 3.85e-10 s                 ; Yes                       ; Yes                       ;
 ; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.54e-07 V                   ; 2.34 V              ; -0.00774 V          ; 0.109 V                              ; 0.026 V                              ; 6.58e-10 s                  ; 8.24e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.54e-07 V                  ; 2.34 V             ; -0.00774 V         ; 0.109 V                             ; 0.026 V                             ; 6.58e-10 s                 ; 8.24e-10 s                 ; Yes                       ; Yes                       ;
 +---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
@@ -285,15 +1004,32 @@ No synchronizer chains to report.
 +---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 ; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
 +---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; sda           ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.71 V              ; -0.0317 V           ; 0.148 V                              ; 0.064 V                              ; 4.51e-10 s                  ; 4.15e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.71 V             ; -0.0317 V          ; 0.148 V                             ; 0.064 V                             ; 4.51e-10 s                 ; 4.15e-10 s                 ; No                        ; Yes                       ;
+; scl           ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.71 V              ; -0.0317 V           ; 0.148 V                              ; 0.064 V                              ; 4.51e-10 s                  ; 4.15e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.71 V             ; -0.0317 V          ; 0.148 V                             ; 0.064 V                             ; 4.51e-10 s                 ; 4.15e-10 s                 ; No                        ; Yes                       ;
+; is_busy       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.71 V              ; -0.0317 V           ; 0.148 V                              ; 0.064 V                              ; 4.51e-10 s                  ; 4.15e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.71 V             ; -0.0317 V          ; 0.148 V                             ; 0.064 V                             ; 4.51e-10 s                 ; 4.15e-10 s                 ; No                        ; Yes                       ;
 ; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.22e-08 V                   ; 2.74 V              ; -0.06 V             ; 0.158 V                              ; 0.08 V                               ; 2.68e-10 s                  ; 2.19e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 2.22e-08 V                  ; 2.74 V             ; -0.06 V            ; 0.158 V                             ; 0.08 V                              ; 2.68e-10 s                 ; 2.19e-10 s                 ; Yes                       ; Yes                       ;
 ; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.54e-08 V                   ; 2.7 V               ; -0.00943 V          ; 0.276 V                              ; 0.035 V                              ; 3.19e-10 s                  ; 4.99e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 3.54e-08 V                  ; 2.7 V              ; -0.00943 V         ; 0.276 V                             ; 0.035 V                             ; 3.19e-10 s                 ; 4.99e-10 s                 ; No                        ; Yes                       ;
 +---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 
 
--------------------
-; Clock Transfers ;
--------------------
-Nothing to report.
++-------------------------------------------------------------------+
+; Setup Transfers                                                   ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; clk        ; clk      ; 156      ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-------------------------------------------------------------------+
+; Hold Transfers                                                    ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; clk        ; clk      ; 156      ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
 ---------------
@@ -315,11 +1051,78 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
-; Unconstrained Input Ports       ; 0     ; 0    ;
-; Unconstrained Input Port Paths  ; 0     ; 0    ;
-; Unconstrained Output Ports      ; 0     ; 0    ;
-; Unconstrained Output Port Paths ; 0     ; 0    ;
+; Unconstrained Input Ports       ; 10    ; 10   ;
+; Unconstrained Input Port Paths  ; 30    ; 30   ;
+; Unconstrained Output Ports      ; 3     ; 3    ;
+; Unconstrained Output Port Paths ; 5     ; 5    ;
 +---------------------------------+-------+------+
+
+
++-------------------------------------+
+; Clock Status Summary                ;
++--------+-------+------+-------------+
+; Target ; Clock ; Type ; Status      ;
++--------+-------+------+-------------+
+; clk    ; clk   ; Base ; Constrained ;
++--------+-------+------+-------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; data_in[0] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_in[1] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_in[2] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_in[3] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_in[4] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_in[5] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_in[6] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_in[7] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; is_addr    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; send_en    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                          ;
++-------------+---------------------------------------------------------------------------------------+
+; Output Port ; Comment                                                                               ;
++-------------+---------------------------------------------------------------------------------------+
+; is_busy     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; scl         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; sda         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++-------------+---------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; data_in[0] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_in[1] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_in[2] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_in[3] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_in[4] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_in[5] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_in[6] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_in[7] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; is_addr    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; send_en    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                          ;
++-------------+---------------------------------------------------------------------------------------+
+; Output Port ; Comment                                                                               ;
++-------------+---------------------------------------------------------------------------------------+
+; is_busy     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; scl         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; sda         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++-------------+---------------------------------------------------------------------------------------+
 
 
 +--------------------------+
@@ -328,7 +1131,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
-    Info: Processing started: Sun Jul 21 20:11:22 2024
+    Info: Processing started: Sun Jul 21 20:53:58 2024
 Info: Command: quartus_sta imu_data_acquisition -c imu_data_acquisition
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -337,47 +1140,71 @@ Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'imu_data_acquisition.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
 Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
-Info (332096): The command derive_clocks did not find any clocks to derive.  No clocks were created or changed.
-Warning (332068): No clocks defined in design.
+Info (332105): Deriving Clocks
+    Info (332105): create_clock -period 1.000 -name clk clk
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
-Info (332154): The derive_clock_uncertainty command did not apply clock uncertainty to any clock-to-clock transfers.
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
-Info (332159): No clocks to report
 Info: Analyzing Slow 1200mV 85C Model
-Info (332140): No fmax paths to report
-Info (332140): No Setup paths to report
-Info (332140): No Hold paths to report
+Critical Warning (332148): Timing requirements not met
+    Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
+Info (332146): Worst-case setup slack is -2.082
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -2.082             -37.842 clk 
+Info (332146): Worst-case hold slack is 0.454
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.454               0.000 clk 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332140): No Minimum Pulse Width paths to report
+Info (332146): Worst-case minimum pulse width slack is -3.000
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -3.000             -40.175 clk 
 Info: Analyzing Slow 1200mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
-Info (332096): The command derive_clocks did not find any clocks to derive.  No clocks were created or changed.
-Warning (332068): No clocks defined in design.
-Info (332154): The derive_clock_uncertainty command did not apply clock uncertainty to any clock-to-clock transfers.
-Info (332140): No fmax paths to report
-Info (332140): No Setup paths to report
-Info (332140): No Hold paths to report
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Critical Warning (332148): Timing requirements not met
+    Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
+Info (332146): Worst-case setup slack is -1.887
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -1.887             -33.939 clk 
+Info (332146): Worst-case hold slack is 0.403
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.403               0.000 clk 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332140): No Minimum Pulse Width paths to report
+Info (332146): Worst-case minimum pulse width slack is -3.000
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -3.000             -40.175 clk 
 Info: Analyzing Fast 1200mV 0C Model
-Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
-Info (332096): The command derive_clocks did not find any clocks to derive.  No clocks were created or changed.
-Warning (332068): No clocks defined in design.
-Info (332154): The derive_clock_uncertainty command did not apply clock uncertainty to any clock-to-clock transfers.
-Info (332140): No Setup paths to report
-Info (332140): No Hold paths to report
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Critical Warning (332148): Timing requirements not met
+    Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
+Info (332146): Worst-case setup slack is -0.333
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -0.333              -3.194 clk 
+Info (332146): Worst-case hold slack is 0.187
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.187               0.000 clk 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332140): No Minimum Pulse Width paths to report
-Info (332101): Design is fully constrained for setup requirements
-Info (332101): Design is fully constrained for hold requirements
+Info (332146): Worst-case minimum pulse width slack is -3.000
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -3.000             -29.411 clk 
+Info (332102): Design is not fully constrained for setup requirements
+Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 4777 megabytes
-    Info: Processing ended: Sun Jul 21 20:11:23 2024
+    Info: Peak virtual memory: 4788 megabytes
+    Info: Processing ended: Sun Jul 21 20:53:59 2024
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 

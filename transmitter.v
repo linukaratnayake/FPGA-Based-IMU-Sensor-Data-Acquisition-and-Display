@@ -14,18 +14,18 @@ module transmitter
 );
 
     reg [BUS_WIDTH - 1:0] data;
-    reg [DATA_WIDTH - 1:0] bits_sent;
+    reg [DATA_WIDTH:0] bits_sent;
     reg [2:0] state;
     reg [1:0] bit_state;
+
+    parameter IDLE = 3'b000, START = 3'b001, SENDING = 3'b010, WAIT = 3'b011, STOP = 3'b100;
+    parameter BEFORE_CLK = 2'b00, AT_CLK = 2'b01, AFTER_CLK = 2'b10;
 
     initial
     begin
         state <= IDLE;
         bit_state <= BEFORE_CLK;
     end
-
-    parameter IDLE = 3'b000, START = 3'b001, SENDING = 3'b010, WAIT = 3'b011, STOP = 3'b100;
-    parameter BEFORE_CLK = 2'b00, AT_CLK = 2'b01, AFTER_CLK = 2'b10;
 
     always @(posedge clk)
     begin
@@ -34,11 +34,11 @@ module transmitter
                 data <= data_in;
                 if (is_addr)
                     begin
-                        bits_sent <= 3'b001;
+                        bits_sent <= 4'b0001;
                     end
                 else
                     begin
-                        bits_sent <= 3'b000;
+                        bits_sent <= 4'b0000;
                     end
                 state = START;
             end
@@ -59,7 +59,7 @@ module transmitter
                             BEFORE_CLK :
                             begin
                                 sda <= 1'b0;
-                                scl <= 1'b0;
+                                scl <= 1'b1;
                                 bit_state <= AT_CLK;
                             end
                             AT_CLK :
@@ -105,7 +105,7 @@ module transmitter
                                     begin
                                         scl <= 1'b0;
                                         bit_state <= BEFORE_CLK;
-                                        bits_sent <= bits_sent + 3'b001;
+                                        bits_sent <= bits_sent + 4'b0001;
                                     end
                                     default :
                                     begin
@@ -118,7 +118,6 @@ module transmitter
                             if (is_addr)
                                 begin
                                     state <= WAIT;
-
                                 end
                             else
                                 begin
@@ -129,9 +128,32 @@ module transmitter
 
                     WAIT:
                     begin
-                        sda <= 1'bZ;
-                        scl <= 1'bZ;
-                        state <= STOP;
+                        case (bit_state)
+                            BEFORE_CLK :
+                            begin
+                                sda <= 1'bZ;
+                                scl <= 1'bZ;
+                                bit_state <= AT_CLK;
+                            end
+                            AT_CLK :
+                            begin
+                                sda <= 1'bZ;
+                                scl <= 1'bZ;
+                                bit_state <= AFTER_CLK;
+                            end
+                            AFTER_CLK :
+                            begin
+                                sda <= 1'bZ;
+                                scl <= 1'bZ;
+                                bit_state <= BEFORE_CLK;
+                                state <= STOP;
+                            end
+                            default :
+                            begin
+                                sda <= 1'bZ;
+                                scl <= 1'bZ;
+                            end
+                        endcase
                     end
 
                     STOP :
@@ -153,7 +175,7 @@ module transmitter
                             AFTER_CLK:
                             begin
                                 sda <= 1'b1;
-                                scl <= 1'b0;
+                                scl <= 1'b1;
                                 bit_state <= BEFORE_CLK;
                                 state <= IDLE;
                             end
@@ -163,7 +185,6 @@ module transmitter
                                 scl <= 1'bZ;
                             end
                         endcase
-                        state <= IDLE;
                     end
 
                     default :
