@@ -1,0 +1,10 @@
+vendor_name = ModelSim
+source_file = 1, D:/GitHub_Projects/FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display/transmitter.v
+source_file = 1, D:/GitHub_Projects/FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display/imu_data_acquisition.v
+source_file = 1, D:/GitHub_Projects/FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display/db/imu_data_acquisition.cbx.xml
+design_name = imu_data_acquisition
+instance = comp, \clk~input , clk~input, imu_data_acquisition, 1
+design_name = hard_block
+instance = comp, \~ALTERA_ASDO_DATA1~~ibuf , ~ALTERA_ASDO_DATA1~~ibuf, hard_block, 1
+instance = comp, \~ALTERA_FLASH_nCE_nCSO~~ibuf , ~ALTERA_FLASH_nCE_nCSO~~ibuf, hard_block, 1
+instance = comp, \~ALTERA_DATA0~~ibuf , ~ALTERA_DATA0~~ibuf, hard_block, 1
