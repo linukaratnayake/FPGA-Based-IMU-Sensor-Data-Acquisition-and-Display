@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Webtalk v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Mon Sep  2 16:34:45 2024
+# Process ID: 22180
+# Current directory: D:/GitHub_Projects/FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display/imu_sensor_data_acquisition/imu_sensor_data_acquisition.sim/sim_1/behav/xsim
+# Command line: wbtcv.exe -mode batch -source D:/GitHub_Projects/FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display/imu_sensor_data_acquisition/imu_sensor_data_acquisition.sim/sim_1/behav/xsim/xsim.dir/i2c_transmitter_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: D:/GitHub_Projects/FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display/imu_sensor_data_acquisition/imu_sensor_data_acquisition.sim/sim_1/behav/xsim/webtalk.log
+# Journal file: D:/GitHub_Projects/FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display/imu_sensor_data_acquisition/imu_sensor_data_acquisition.sim/sim_1/behav/xsim\webtalk.jou
+#-----------------------------------------------------------
+source D:/GitHub_Projects/FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display/imu_sensor_data_acquisition/imu_sensor_data_acquisition.sim/sim_1/behav/xsim/xsim.dir/i2c_transmitter_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Mon Sep  2 16:34:46 2024...

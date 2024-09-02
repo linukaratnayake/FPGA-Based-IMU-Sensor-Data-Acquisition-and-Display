@@ -1,0 +1,10 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../imu_sensor_data_acquisition.srcs/sources_1/new/i2c_transmitter.v" \
+"../../../../imu_sensor_data_acquisition.srcs/sim_1/new/i2c_transmitter_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

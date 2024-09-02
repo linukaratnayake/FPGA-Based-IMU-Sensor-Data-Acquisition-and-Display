@@ -1,0 +1,64 @@
+*** Start analyzing build configuration ***
+INFO: Auto-config - Scanning: D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs
+INFO: Auto-config - VLOG: D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs
+INFO: Auto-config - Wrote:
+    .dvt\default.build.auto.1
+*** List of included argument files ***
+    Build configuration file:  D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\.dvt\default.build
+    -f d:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\.dvt\default.build.auto.1
+*** List of invocations ***
+Invocation #1 +dvt_init+dvt in d:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\.dvt\default.build.auto.1 at line 9
+*** Done analyzing build configuration [136 ms] ***
+
+*** Start SystemVerilog build ***
+*** Invocation #1***
+Loading (1) D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sim_1\new\i2c_transmitter_tb.v ...
+Done D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sim_1\new\i2c_transmitter_tb.v [40 ms, 88 lines, Verilog_2001] ...
+Loading (2) D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sources_1\new\i2c_transceiver.v ...
+Done D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sources_1\new\i2c_transceiver.v [0 ms, 8 lines, Verilog_2001] ...
+Loading (3) D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sources_1\new\i2c_transmitter.v ...
+Done D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sources_1\new\i2c_transmitter.v [26 ms, 223 lines, Verilog_2001] ...
+*** Done invocation #1 [66 ms] ***
+*** Done parsing [LT 65 ms, PT 66 ms] ***
+*** Total number of lines [319] ***
+Performing post full build actions ...
+Performing post full build step 1 (SRI) [0 ms] ...
+Performing post full build step 2 (RI) [0 ms] ...
+Performing post full build step 3 (RCP) [0 ms] ...
+*** Files summary [3 total, 3 unique, 0 optimized] ***
+*** Done SystemVerilog build [297 ms] ***
+
+*** Start mixed mode extension build ***
+Performing mixed post full build step (VLOG - RI) [0 ms] ...
+*** Warning: UNSPECIFIED_TOP: Please specify a -top module/entity/configuration in the project build file
+*** Top design candidates: work.i2c_transmitter_tb
+Performing mixed post full build step (MIXED - ELAB) [326 ms] ...
+Performing mixed post full build step (MIXED - UNEL) [57 ms] ...
+*** Warning: ASSIGNMENT_BLOCKING: Blocking assignment of 'state' in sequential logic (use non-blocking assignment)
+    at line 64 in D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sources_1\new\i2c_transmitter.v:64 [compile index 3]
+*** Warning: ASSIGNMENT_BLOCKING: Blocking assignment of 'is_busy' in sequential logic (use non-blocking assignment)
+    at line 71 in D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sources_1\new\i2c_transmitter.v:71 [compile index 3]
+*** Warning: ASSIGNMENT_BLOCKING: Blocking assignment of 'is_busy' in sequential logic (use non-blocking assignment)
+    at line 213 in D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sources_1\new\i2c_transmitter.v:213 [compile index 3]
+*** Warning: UNELABORATED_MODULE: Module 'work.i2c_transceiver' is not elaborated
+    at line 1 in D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sources_1\new\i2c_transceiver.v:1 [compile index 2]
+Performing mixed post full build step (VLOG - RD) [0 ms] ...
+Performing mixed post full build step (VLOG - US) [66 ms] ...
+*** Warning: SIGNAL_NEVER_READ: Signal 'sda' is never read (connected to sub-instance output port)
+    at line 37 in D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sim_1\new\i2c_transmitter_tb.v:37 [compile index 1]
+*** Warning: SIGNAL_NEVER_READ: Signal 'scl' is never read (connected to sub-instance output port)
+    at line 38 in D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sim_1\new\i2c_transmitter_tb.v:38 [compile index 1]
+*** Warning: SIGNAL_NEVER_READ: Signal 'is_busy' is never read (connected to sub-instance output port)
+    at line 39 in D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sim_1\new\i2c_transmitter_tb.v:39 [compile index 1]
+*** Warning: SIGNAL_NOT_RESET: Signal 'data' is not reset
+    at line 55 in D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sources_1\new\i2c_transmitter.v:55 [compile index 3]
+*** Warning: SIGNAL_NOT_RESET: Signal 'is_busy' is not reset
+    at line 71 in D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sources_1\new\i2c_transmitter.v:71 [compile index 3]
+*** Warning: SIGNAL_NOT_RESET: Signal 'sda' is not reset
+    at line 72 in D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sources_1\new\i2c_transmitter.v:72 [compile index 3]
+*** Warning: SIGNAL_NOT_RESET: Signal 'scl' is not reset
+    at line 73 in D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sources_1\new\i2c_transmitter.v:73 [compile index 3]
+*** Warning: SIGNAL_NOT_RESET: Signal 'bit_state' is not reset
+    at line 84 in D:\GitHub_Projects\FPGA-Based-IMU-Sensor-Data-Acquisition-and-Display\imu_sensor_data_acquisition\imu_sensor_data_acquisition.srcs\sources_1\new\i2c_transmitter.v:84 [compile index 3]
+*** Done mixed mode extension build [457 ms] ***
+*** Total build time [1s.305ms] ***
